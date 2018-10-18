@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bookstore>
+<book category="casero" cover="justinbiebier">
+<title>Justin Bieber y Michael Jackson unidos por el amor</title>
+<autores>
+<author>Samuel L. Jackson</author>
+</autores>
+<year>1999</year>
+<price>599</price>
+</book>
+<book category="web" cover="cover1">
+<title>Michael Jackson jugando con los niños </title>
+<autores>
+<author>BurguerCangreBurger</author>
+<author>CurguerBangreCurger</author>
+</autores>
+<year>2999</year>
+<price>199</price>
+</book>
+<book category="educacional" cover="cover2">
+<title>Como hackear el algoritmo de Google Adsense y no morir en el intento</title>
+<autores>
+<author>Yea boi</author>
+</autores>
+<year>999</year>
+<price>59</price>
+</book>
+</bookstore>

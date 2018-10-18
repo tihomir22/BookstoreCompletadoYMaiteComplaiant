@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import modelo.Autor;
 import modelo.Book;
 import modelo.Bookstore;
 
@@ -24,14 +25,16 @@ public class Constantes {
     }
 
     public Bookstore altaBookStore(Bookstore bs) {
-
+        Autor aut=new Autor("Samuel L. Jackson");
         Book libro1 = new Book("casero", "justinbiebier", "Justin Bieber y Michael Jackson unidos por el amor", "1999", "599");
-        libro1.getListaAutores().add("Samuel L. Jackson");
+        libro1.getListaAutores().add(aut);
+        
         Book libro2 = new Book("web", "cover1", "Michael Jackson jugando con los niños ", "2999", "199");
-        libro2.getListaAutores().add("BurguerCangreBurger");
-        libro2.getListaAutores().add("CurguerBangreCurger");
+        libro2.getListaAutores().add(new Autor("BurguerCangreBurger"));
+        libro2.getListaAutores().add(new Autor("CurguerBangreCurger"));
+        libro2.getListaAutores().add(aut);
         Book libro3 = new Book("educacional", "cover2", "Como hackear el algoritmo de Google Adsense y no morir en el intento", "999", "59");
-        libro3.getListaAutores().add("Yea boi");
+        libro3.getListaAutores().add(new Autor("Yea boi"));
         bs.add(libro1);
         bs.add(libro2);
         bs.add(libro3);

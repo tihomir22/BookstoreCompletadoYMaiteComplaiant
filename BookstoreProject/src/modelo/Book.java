@@ -15,7 +15,7 @@ public class Book {
     public String categoria;
     public String cover;
     public String titulo;
-    public ArrayList<String>listaAutores=new ArrayList<>();
+    public ArrayList<Autor>listaAutores=new ArrayList<>();
     public String año;
     public String precio;
 
@@ -52,11 +52,11 @@ public class Book {
         this.titulo = titulo;
     }
 
-    public ArrayList<String> getListaAutores() {
+    public ArrayList<Autor> getListaAutores() {
         return listaAutores;
     }
 
-    public void setListaAutores(ArrayList<String> listaAutores) {
+    public void setListaAutores(ArrayList<Autor> listaAutores) {
         this.listaAutores = listaAutores;
     }
 

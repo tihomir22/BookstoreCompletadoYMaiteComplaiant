@@ -7,6 +7,7 @@ package controlador;
 
 import java.util.ArrayList;
 import javax.xml.soap.Node;
+import modelo.Autor;
 import modelo.Book;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -30,7 +31,8 @@ public class ControlBook extends ControlDom {
         libro.setTitulo(getValorEtiqueta(cons.ET_TITULO, book));
 
         Element eAutores = getElementEtiqueta(cons.ET_AUTORES, book);
-        libro.setListaAutores(leerAutores(getElementEtiqueta(cons.ET_AUTORES, eAutores)));
+        System.out.println("Le paso la etiqueta " + eAutores.getNodeName() + " con " + eAutores.getChildNodes().getLength());
+        libro.setListaAutores(leerAutores(eAutores));
 
         libro.setCategoria(book.getAttribute("category"));
         libro.setCover(book.getAttribute("cover"));
@@ -39,16 +41,15 @@ public class ControlBook extends ControlDom {
 
     public void escribirBook(Document doc, Element book, Book libro) {
         Constantes cons = new Constantes();
-        
+
         Element title = doc.createElement(cons.ET_TITULO);
         title.appendChild(doc.createTextNode(libro.getTitulo()));
         book.appendChild(title);
 
-        Element eAutores=doc.createElement(cons.ET_AUTORES);
+        Element eAutores = doc.createElement(cons.ET_AUTORES);
         escribirAutores(doc, eAutores, libro);
         book.appendChild(eAutores);
-        
-        
+
         Element year = doc.createElement(cons.ET_AÑO);
         year.appendChild(doc.createTextNode(libro.getAño()));
         book.appendChild(year);
@@ -57,24 +58,26 @@ public class ControlBook extends ControlDom {
         price.appendChild(doc.createTextNode(libro.getPrecio()));
         book.appendChild(price);
     }
-    
-    public ArrayList<String> leerAutores(Element eAutores) {
+
+    public ArrayList<Autor> leerAutores(Element eAutores) {
         Constantes cons = new Constantes();
-        ArrayList<String> listaAutoresArray = new ArrayList<>();
+        ArrayList<Autor> listaAutoresArray = new ArrayList<>();
 
         NodeList listaAutores = eAutores.getElementsByTagName(cons.ET_AUTOR);
         for (int i = 0; i < listaAutores.getLength(); i++) {
-            listaAutoresArray.add(listaAutores.item(i).getTextContent());
+            Autor autor = new Autor(listaAutores.item(i).getTextContent());
+            //System.out.println("Leo autor "+autor.toString());
+            listaAutoresArray.add(autor);
         }
         return listaAutoresArray;
     }
 
     public void escribirAutores(Document doc, Element eAutores, Book b) {
         Constantes cons = new Constantes();
-        
+
         for (int i = 0; i < b.getListaAutores().size(); i++) {
             Element autor = doc.createElement(cons.ET_AUTOR);
-            autor.appendChild(doc.createTextNode(b.getListaAutores().get(i)));
+            autor.appendChild(doc.createTextNode(b.getListaAutores().get(i).getNombre()));
             eAutores.appendChild(autor);
         }
     }
